@@ -1,7 +1,17 @@
 # Navigation-LLM-layer-pruning
 
 ## Step-by-step Instructions
-**1. Llama-3.1-8B-Instruct Pruning with 8 layers pruned using reverse-order:**
+**1. Download Hellaswag from Huggingface:**
+```python
+python hf_download.py --dataset  Rowan/hellaswag  --save_dir saved_path
+```
+
+**1. Download Vicuna-7b-v1.5 from Huggingface:**
+```python
+python hf_download.py --model  lmsys/vicuna-7b-v1.5  --save_dir saved_path
+```
+
+**. Llama-3.1-8B-Instruct Pruning with 8 layers pruned using reverse-order:**
 
 ```python
 CUDA_VISIBLE_DEVICES=0,1 TRANSFORMERS_OFFLINE=1 python prune_llm.py --base_model Llama-3.1-8B-Instruct --save_model  --pr_method tail --remove_layer 8
