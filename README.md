@@ -40,3 +40,13 @@ CUDA_VISIBLE_DEVICES=0,1 TRANSFORMERS_OFFLINE=1 python finetune_pruned.py --base
 ```python
 CUDA_VISIBLE_DEVICES=0,1 TRANSFORMERS_OFFLINE=1 python partial_fine-tuning.py --base_model Llama-3.1-8B-Instruct --save_model  --prune_model_path your_path  --partial_layer_name last3
 ```
+**6. Evaluating the Performance of the Pruned Llama-3.1-8B-Instruct (with LoRA) using [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness):**
+```python
+#CUDA_VISIBLE_DEVICES=0,1 TRANSFORMERS_OFFLINE=1 lm_eval --model hf  --model_args pretrained=model_path,trust_remote_code=True,peft=lora_path,parallelize=True --tasks mmlu,cmmlu,piqa,openbookqa,winogrande,hellaswag,arc_easy,arc_challenge  --device cuda:0  --batch_size auto  --num_fewshot 0
+```
+
+**6. Evaluating the Performance of the Pruned Llama-3.1-8B-Instruct (with Partial-Layer Finetuning) using [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness):**
+```python
+CUDA_VISIBLE_DEVICES=0,1 TRANSFORMERS_OFFLINE=1 lm_eval --model hf  --model_args pretrained=model_path,trust_remote_code=True,parallelize=True --tasks mmlu,cmmlu,piqa,openbookqa,winogrande,hellaswag,arc_easy,arc_challenge  --device cuda:0  --batch_size auto  --num_fewshot 0
+```
+
