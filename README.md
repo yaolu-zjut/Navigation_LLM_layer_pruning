@@ -1,4 +1,11 @@
 # Navigation-LLM-layer-pruning
+## 
+### Supported LLMs:
+- [Vicuna-7b-v1.5](https://huggingface.co/lmsys/vicuna-7b-v1.5)
+- [Qwen1.5-7B](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwim-qfT1IaJAxUNr1YBHU-wF8UQFnoECB4QAQ&url=https%3A%2F%2Fhuggingface.co%2FQwen%2FQwen1.5-7B&usg=AOvVaw2E2lUSV7wML81PPxhzIfqJ&opi=89978449)
+- [Gemma2-2B-It](https://huggingface.co/google/gemma-2-2b-it)
+- [Llama-3.1-8B-It](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct)
+
 
 ## Step-by-step Instructions
 **1. Download Hellaswag from Huggingface:**
