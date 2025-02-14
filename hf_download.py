@@ -1,8 +1,3 @@
-"""
-@File         :hf_download.py
-@Description  :Download huggingface models and datasets from mirror site.
-@Author       :Xiaojian Yuan
-"""
 
 import argparse
 import os
