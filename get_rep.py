@@ -7,8 +7,6 @@ from transformers import AutoTokenizer, AutoModel, AutoModelForCausalLM
 from utils.CKA import linear_CKA
 from utils.get_calibration_samples import get_examples
 
-'''GhatGLM 暂时没解决'''
-
 
 def get_hidden_states(model, inputs):
     hidden_states = []
@@ -42,53 +40,53 @@ def get_hidden_states(model, inputs):
 def main(args):
     if args.model == 'llama2_7b':
         tokenizer = AutoTokenizer.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/LLAMA2_7B/', use_fast=False, trust_remote_code=True
+            '/LLAMA2_7B/', use_fast=False, trust_remote_code=True
         )
 
         model = AutoModel.from_pretrained(
-                '/public/MountData/yaolu/LLM_pretrained/LLAMA2_7B/', trust_remote_code=True,
+                '/LLAMA2_7B/', trust_remote_code=True,
                 low_cpu_mem_usage=True if args.torch_version >=1.9 else False
         )
     elif args.model == 'BaiChuan7B':
         tokenizer = AutoTokenizer.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/Baichuan_7B/', use_fast=False, trust_remote_code=True
+            '/Baichuan_7B/', use_fast=False, trust_remote_code=True
         )
         model = AutoModel.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/Baichuan_7B/', trust_remote_code=True,
+            '/Baichuan_7B/', trust_remote_code=True,
             low_cpu_mem_usage=True if args.torch_version >= 1.9 else False
         )
     elif args.model == 'llama3-8b':
         tokenizer = AutoTokenizer.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/LLAMA3_8B/',
+            '/LLAMA3_8B/',
             use_fast=False, trust_remote_code=True
         )
         model = AutoModelForCausalLM.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/LLAMA3_8B/',
+            '/LLAMA3_8B/',
             trust_remote_code=True, use_cache=False
         )
     elif args.model == 'Vicuna_7B':
         tokenizer = AutoTokenizer.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/Vicuna_7B_V1.5/models--lmsys--vicuna-7b-v1.5/',
+            '/Vicuna_7B_V1.5/models--lmsys--vicuna-7b-v1.5/',
             use_fast=False, trust_remote_code=True
         )
         model = AutoModelForCausalLM.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/Vicuna_7B_V1.5/models--lmsys--vicuna-7b-v1.5/',
+            '/Vicuna_7B_V1.5/models--lmsys--vicuna-7b-v1.5/',
             trust_remote_code=True, use_cache=False
         )
     elif args.model == 'Qwen1.5-7B':
         tokenizer = AutoTokenizer.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/Qwen1.5-7B/models--Qwen--Qwen1.5-7B/',
+            '/Qwen1.5-7B/models--Qwen--Qwen1.5-7B/',
             use_fast=False, trust_remote_code=True
         )
         model = AutoModelForCausalLM.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/Qwen1.5-7B/models--Qwen--Qwen1.5-7B/',
+            '/Qwen1.5-7B/models--Qwen--Qwen1.5-7B/',
             trust_remote_code=True, use_cache=False
         )
     elif args.model == 'ChatGLM6B':  # have some problem
         tokenizer = AutoTokenizer.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/chatglm6b/', use_fast=False, trust_remote_code=True
+            '/chatglm6b/', use_fast=False, trust_remote_code=True
         )
-        model = AutoModel.from_pretrained("/public/MountData/yaolu/LLM_pretrained/chatglm6b/", trust_remote_code=True)
+        model = AutoModel.from_pretrained("/chatglm6b/", trust_remote_code=True)
     elif args.model == 'lora':
         tokenizer = AutoTokenizer.from_pretrained(
             args.model_path, use_fast=False, trust_remote_code=True
@@ -125,7 +123,7 @@ def main(args):
                 if i >= j:
                     sim_matrix[i,j] = sim_matrix[j,i] = linear_CKA(hidden_states[i][0].view(b, h * w).cuda(), hidden_states[j][0].view(b, h * w).cuda())
 
-        torch.save(sim_matrix, '/public/ly/SBF/img/sim_matrix_{}_id{}_batch{}.pth'.format(args.model, kk, args.num_examples))
+        torch.save(sim_matrix, '/public/SBF/img/sim_matrix_{}_id{}_batch{}.pth'.format(args.model, kk, args.num_examples))
 
 
 if __name__ == "__main__":
