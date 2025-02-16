@@ -258,7 +258,7 @@ def main(args):
     trainer.train()
 
     if args.save_model:
-        output_lora_dir = '/public/MountData/yaolu/LLM_pretrained/pruned_model/partial_tuing_taylor8/partial_tuing_{}_alpaca_{}/'.format(args.base_model, args.partial_layer_name)
+        output_lora_dir = 'LLM_pretrained/pruned_model/partial_tuing_taylor8/partial_tuing_{}_alpaca_{}/'.format(args.base_model, args.partial_layer_name)
         if not os.path.exists(output_lora_dir):
             os.mkdir(output_lora_dir)
         model.save_pretrained(output_lora_dir)
@@ -277,7 +277,7 @@ if __name__ == "__main__":
     parser.add_argument('--cache_dataset', action="store_true", default=False)
     parser.add_argument('--extra_val_dataset', type=str, default=None, help='validation datasets. Split with ","')
     parser.add_argument('--output_dir', type=str,
-                        default="/public/MountData/yaolu/LLM_pretrained/pruned_model/lora-alpaca-llama/",
+                        default="LLM_pretrained/pruned_model/lora-alpaca-llama/",
                         help='output directory')
 
     # Training Hyperparameters
