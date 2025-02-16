@@ -185,7 +185,7 @@ def main(args):
     # model = model.merge_and_unload()
 
     if args.save_model:
-        output_lora_dir = '/public/mount_data/data/yaolu/model/LLM_pretrained/pruned_model/partial_tuing/partial_tuing_alpaca_{}_{}_{}_{}/'.format(args.pr_method, args.base_model, args.partial_layer_name,args.remove_layer)
+        output_lora_dir = 'LLM_pretrained/pruned_model/partial_tuing/partial_tuing_alpaca_{}_{}_{}_{}/'.format(args.pr_method, args.base_model, args.partial_layer_name,args.remove_layer)
         if not os.path.exists(output_lora_dir):
             os.mkdir(output_lora_dir)
         model.save_pretrained(output_lora_dir)
@@ -201,7 +201,7 @@ if __name__ == "__main__":
     parser.add_argument('--extra_val_dataset', type=str, default=None, help='validation datasets. Split with ","')
     parser.add_argument('--remove_layer', type=int, default=16, help='batch size')
     parser.add_argument('--output_dir', type=str,
-                        default="/public/mount_data/data/yaolu/model/LLM_pretrained/pruned_model/lora_alpaca-llama/",
+                        default="model/LLM_pretrained/pruned_model/lora_alpaca-llama/",
                         help='output directory')
 
     # Training Hyperparameters
