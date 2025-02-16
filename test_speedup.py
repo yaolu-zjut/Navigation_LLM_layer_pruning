@@ -77,7 +77,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Tuning Pruned LLaMA (huggingface version)')
-    parser.add_argument('--base_model_path', type=str, default="/public/MountData/yaolu/LLM_pretrained/LLAMA2_7B/", help='base model name')
+    parser.add_argument('--base_model_path', type=str, default="", help='base model name')
 
     args = parser.parse_args()
     main(args)
