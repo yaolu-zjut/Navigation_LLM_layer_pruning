@@ -170,7 +170,7 @@ def main(args):
         model.model_parallel = True
 
     processed_dataset = preprocess_dataset(tokenizer=tokenizer, max_length=1024, seed=42,
-                                           training_dataset='/public/home/xwb_221124030297/dataset/databricks-dolly-15k/')
+                                           training_dataset='dataset/databricks-dolly-15k/')
 
     split_dataset = processed_dataset.train_test_split(test_size=200, seed=42)
 
@@ -217,7 +217,7 @@ def main(args):
     # model = model.merge_and_unload()
 
     if args.save_model:
-        output_lora_dir = '/public/home/xwb_221124030297/model/dolly/finetuned_lora_dolly_{}_{}{}/'.format(args.base_model, args.pr_method, args.remove_layer)
+        output_lora_dir = 'model/dolly/finetuned_lora_dolly_{}_{}{}/'.format(args.base_model, args.pr_method, args.remove_layer)
         if not os.path.exists(output_lora_dir):
             os.mkdir(output_lora_dir)
         model.save_pretrained(output_lora_dir)
@@ -234,7 +234,7 @@ if __name__ == "__main__":
     parser.add_argument('--extra_val_dataset', type=str, default=None, help='validation datasets. Split with ","')
     parser.add_argument('--remove_layer', type=int, default=16, help='batch size')
     parser.add_argument('--output_dir', type=str,
-                        default="/public/home/xwb_221124030297/",
+                        default="",
                         help='output directory')
 
     # Training Hyperparameters
