@@ -115,67 +115,57 @@ def main(args):
 
     if args.base_model == 'llama3-8b':
         tokenizer = AutoTokenizer.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/LLAMA3_8B/',
+            'LLAMA3_8B/',
             use_fast=False, trust_remote_code=True
         )
         model = AutoModelForCausalLM.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/LLAMA3_8B/',
+            'LLAMA3_8B/',
             trust_remote_code=True, use_cache=False, device_map=device_map, low_cpu_mem_usage=True if args.torch_version >=1.9 else False
         )
-        config_path = '/public/MountData/yaolu/LLM_pretrained/LLAMA3_8B/'
+        config_path = 'LLAMA3_8B/'
     elif args.base_model == 'Vicuna_7B':
         tokenizer = AutoTokenizer.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/Vicuna_7B_V1.5/models--lmsys--vicuna-7b-v1.5/',
+            'Vicuna_7B_V1.5/models--lmsys--vicuna-7b-v1.5/',
             use_fast=False, trust_remote_code=True
         )
         model = AutoModelForCausalLM.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/Vicuna_7B_V1.5/models--lmsys--vicuna-7b-v1.5/',
+            'Vicuna_7B_V1.5/models--lmsys--vicuna-7b-v1.5/',
             trust_remote_code=True, device_map=device_map, use_cache=False,
         )
-        config_path = '/public/MountData/yaolu/LLM_pretrained/Vicuna_7B_V1.5/models--lmsys--vicuna-7b-v1.5/'
+        config_path = 'Vicuna_7B_V1.5/models--lmsys--vicuna-7b-v1.5/'
     elif args.base_model == 'Qwen1.5-7B':
         tokenizer = AutoTokenizer.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/Qwen1.5-7B/models--Qwen--Qwen1.5-7B/',
+            'Qwen1.5-7B/models--Qwen--Qwen1.5-7B/',
             use_fast=False, trust_remote_code=True # delete this for BI, add torch_dtype=torch.bfloat16 for taylor
         )
         model = AutoModelForCausalLM.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/Qwen1.5-7B/models--Qwen--Qwen1.5-7B/',
+            'Qwen1.5-7B/models--Qwen--Qwen1.5-7B/',
             trust_remote_code=True, device_map=device_map, use_cache=False
         )
-        config_path = '/public/MountData/yaolu/LLM_pretrained/Qwen1.5-7B/models--Qwen--Qwen1.5-7B/'
+        config_path = 'Qwen1.5-7B/models--Qwen--Qwen1.5-7B/'
     elif args.base_model == 'Gemma2-2b':
         tokenizer = AutoTokenizer.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/gemma-2-2b-it/',
+            'gemma-2-2b-it/',
             use_fast=False, trust_remote_code=True
         )
         model = AutoModelForCausalLM.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/gemma-2-2b-it/',
+            'gemma-2-2b-it/',
             trust_remote_code=True, device_map=device_map, use_cache=False
         )
-        config_path = '/public/MountData/yaolu/LLM_pretrained/gemma-2-2b-it/'
-    elif args.base_model == 'chatglm2-6b':
-        tokenizer = AutoTokenizer.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/chatglm2-6b/models--THUDM--chatglm2-6b/',
-            use_fast=False, trust_remote_code=True
-        )
-        model = AutoModelForCausalLM.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/chatglm2-6b/models--THUDM--chatglm2-6b/',
-            trust_remote_code=True, device_map=device_map, use_cache=False
-        )
-        config_path = '/public/MountData/yaolu/LLM_pretrained/chatglm2-6b/models--THUDM--chatglm2-6b/'
+        config_path = 'gemma-2-2b-it/'
     elif args.base_model == 'Llama-3.1-8B-Instruct':  # NEED TO CHECK
         tokenizer = AutoTokenizer.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/Meta-Llama-3.1-8B-Instruct/models--meta-llama--Meta-Llama-3.1-8B-Instruct/snapshots/8c22764a7e3675c50d4c7c9a4edb474456022b16/',
+            'Meta-Llama-3.1-8B-Instruct/models--meta-llama--Meta-Llama-3.1-8B-Instruct/snapshots/8c22764a7e3675c50d4c7c9a4edb474456022b16/',
             use_fast=False, trust_remote_code=True
         )
         model = AutoModelForCausalLM.from_pretrained(
-            '/public/MountData/yaolu/LLM_pretrained/Meta-Llama-3.1-8B-Instruct/models--meta-llama--Meta-Llama-3.1-8B-Instruct/snapshots/8c22764a7e3675c50d4c7c9a4edb474456022b16/',
+            'Meta-Llama-3.1-8B-Instruct/models--meta-llama--Meta-Llama-3.1-8B-Instruct/snapshots/8c22764a7e3675c50d4c7c9a4edb474456022b16/',
             torch_dtype=torch.bfloat16,  # delete this for BI, maintain for taylor
             device_map=device_map,
             use_cache=False,
-            cache_dir='/public/MountData/yaolu/LLM_pretrained/Meta-Llama-3.1-8B-Instruct/models--meta-llama--Meta-Llama-3.1-8B-Instruct/snapshots/8c22764a7e3675c50d4c7c9a4edb474456022b16/'
+            cache_dir='Meta-Llama-3.1-8B-Instruct/models--meta-llama--Meta-Llama-3.1-8B-Instruct/snapshots/8c22764a7e3675c50d4c7c9a4edb474456022b16/'
         )
-        config_path = '/public/MountData/yaolu/LLM_pretrained/Meta-Llama-3.1-8B-Instruct/models--meta-llama--Meta-Llama-3.1-8B-Instruct/snapshots/8c22764a7e3675c50d4c7c9a4edb474456022b16/'
+        config_path = 'Meta-Llama-3.1-8B-Instruct/models--meta-llama--Meta-Llama-3.1-8B-Instruct/snapshots/8c22764a7e3675c50d4c7c9a4edb474456022b16/'
     else:
         sys.exit(0)
 
@@ -624,5 +614,4 @@ if __name__ == "__main__":
     ## CUDA_VISIBLE_DEVICES=1,2 TRANSFORMERS_OFFLINE=1 python pruning_method.py --base_model llama3-8b  --pruning_method magnitude_l1  --norm_power 1
     ## CUDA_VISIBLE_DEVICES=1,2 TRANSFORMERS_OFFLINE=1 python pruning_method.py --base_model llama3-8b  --pruning_method magnitude_l2  --norm_power 2
     ## CUDA_VISIBLE_DEVICES=1,2 TRANSFORMERS_OFFLINE=1 python pruning_method.py --base_model llama3-8b  --pruning_method ppl
-    # CUDA_VISIBLE_DEVICES=1 TRANSFORMERS_OFFLINE=1 lm_eval --model hf  --model_args pretrained=/public/MountData/yaolu/,trust_remote_code=True  --tasks arc_easy  --device cuda:0  --batch_size auto  --num_fewshot 0
     main(args)
