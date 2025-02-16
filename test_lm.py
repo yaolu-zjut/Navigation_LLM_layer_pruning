@@ -34,7 +34,7 @@ def eval_zero_shot_for_qlora(args, task_list=['arc_easy', 'mmlu', 'cmmlu', 'piqa
     # indexes all tasks from the `lm_eval/tasks` subdirectory.
     # Alternatively, you can set `TaskManager(include_path="path/to/my/custom/task/configs")`
     # to include a set of tasks in a separate directory.
-    task_manager = lm_eval.tasks.TaskManager(include_path='/public/MountData/yaolu/lm-evaluation-harness/lm_eval/tasks')
+    task_manager = lm_eval.tasks.TaskManager(include_path='path/to/my/custom/tasks')
 
     # Setting `task_manager` to the one above is optional and should generally be done
     # if you want to include tasks from paths other than ones in `lm_eval/tasks`.
@@ -70,5 +70,3 @@ if __name__ == "__main__":
     args.torch_version = torch_version
 
     eval_zero_shot_for_qlora(args)
-    # CUDA_VISIBLE_DEVICES=3 TRANSFORMERS_OFFLINE=1 python test_lm.py --prune_model_path /public/MountData/yaolu/LLM_pretrained/pruned_model/pruned_Vicuna_7B_tail/  --lora_path /public/MountData/yaolu/LLM_pretrained/pruned_model/finetuned_Qlora_alpaca_Vicuna_7B_tail/
-    # CUDA_VISIBLE_DEVICES=3 TRANSFORMERS_OFFLINE=1 python test_lm.py --prune_model_path /public/MountData/yaolu/LLM_pretrained/pruned_model/pruned_Vicuna_7B_tail/  --lora_path /public/MountData/yaolu/LLM_pretrained/pruned_model/finetuned_Qlora_alpaca_Vicuna_7B_tail/
