@@ -219,7 +219,7 @@ def main(args):
     trainer.train()
 
     if args.save_model:
-        output_lora_dir = '/public/MountData/yaolu/LLM_pretrained/pruned_model/partial_tuing_alpaca_{}_{}/'.format(args.base_model, args.partial_layer_name)
+        output_lora_dir = 'LLM_pretrained/pruned_model/partial_tuing_alpaca_{}_{}/'.format(args.base_model, args.partial_layer_name)
         if not os.path.exists(output_lora_dir):
             os.mkdir(output_lora_dir)
         model.save_pretrained(output_lora_dir, safe_serialization=False)
@@ -235,7 +235,7 @@ if __name__ == "__main__":
     parser.add_argument('--cache_dataset', action="store_true", default=False)
     parser.add_argument('--extra_val_dataset', type=str, default=None, help='validation datasets. Split with ","')
     parser.add_argument('--output_dir', type=str,
-                        default="/public/MountData/yaolu/LLM_pretrained/pruned_model/finetuned_lora_alpaca-llama/",
+                        default="LLM_pretrained/pruned_model/finetuned_lora_alpaca-llama/",
                         help='output directory')
 
     # Training Hyperparameters
@@ -280,5 +280,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     torch_version = int(torch.__version__.split('.')[1])
     args.torch_version = torch_version
-    ## CUDA_VISIBLE_DEVICES=1 TRANSFORMERS_OFFLINE=1 python partial_fine-tuning_gemma.py --base_model  Gemma2-2b  --save_model --pr_method tail12 --prune_model_path  /public/MountData/yaolu/LLM_pretrained/pruned_model/pruned_Gemma2-2b_tail12/  --partial_layer_name last1
+    ## CUDA_VISIBLE_DEVICES=1 TRANSFORMERS_OFFLINE=1 python partial_fine-tuning_gemma.py --base_model  Gemma2-2b  --save_model --pr_method tail12 --prune_model_path    --partial_layer_name last1
     main(args)
